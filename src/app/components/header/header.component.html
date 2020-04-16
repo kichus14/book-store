@@ -1,0 +1,14 @@
+<!-- As a link -->
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+  <a class="navbar-brand" routerLink="/">Bodhidharma Heritage Book</a>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item" [class.active]="isActiveRoute('/list')">
+        <a class="nav-link" routerLink="/list">View Books</a>
+      </li>
+      <li class="nav-item" [class.active]="isActiveRoute('/add')">
+        <a class="nav-link" routerLink="/add">Add Book</a>
+      </li>
+    </ul>
+  </div>
+</nav>

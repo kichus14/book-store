@@ -1,0 +1,73 @@
+<form [formGroup]="addForm" (ngSubmit)="onAddSubmit()">
+  <!-- <div class="row">
+    <div class="alert alert-primary col" role="alert">
+      Add New Book
+    </div>
+  </div> -->
+  <app-page-title [title]="[(exisitingBook == undefined || exisitingBook == null) ? 'Add New Book' : 'Edit Book Detail']"></app-page-title>
+  <div class="row">
+    <div class="col-12">
+      <div class="form-group">
+        <input type="hidden" id="id" name="id" formControlName="id">
+        <label for="name">Upload an image for book <small>Image should be less than 50kb</small></label>
+        <input type="hidden" id="image" name="image" formControlName="image">
+        <input type="file" accept="image/*"  class="form-control sr-only" id="imageFile" name="imageFile" (change)="imageFileChange($event)">
+        <label for="imageFile" class="img-control d-block">
+          <img [src]="controls.image.value" />
+        </label>
+        <app-control-error *ngIf="controls.name.touched && controls.name.errors"
+          [errors]="controls.name.errors" [messages]="{ required: 'Image is required' }"></app-control-error>
+      </div>
+    </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" class="form-control" id="name" name="name" formControlName="name">
+          <app-control-error *ngIf="controls.name.touched && controls.name.errors"
+            [errors]="controls.name.errors" [messages]="{ required: 'Name is required', pattern: 'Enter a valid Name' }"></app-control-error>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <label for="author">Author Name</label>
+            <input type="text" class="form-control" id="author" name="author" formControlName="author">
+            <app-control-error *ngIf="controls.author.touched && controls.author.errors"
+            [errors]="controls.author.errors" [messages]="{ required: 'Author is required', pattern: 'Enter a valid Author' }"></app-control-error>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <label for="category">Category</label>
+            <!-- <input type="text" class="form-control" id="author" name="author"> -->
+            <select class="form-control"  formControlName="category">
+                <option *ngFor="let _category of categories" [value]="_category.value">{{ _category.text.toLowerCase() }}</option>
+            </select>
+            <app-control-error *ngIf="controls.category.touched && controls.category.errors"
+            [errors]="controls.category.errors" [messages]="{ required: 'Category is required' }"></app-control-error>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <label for="edition">Edition</label>
+            <input type="text" class="form-control" id="edition" name="edition" formControlName="edition">
+            <app-control-error *ngIf="controls.edition.touched && controls.edition.errors"
+            [errors]="controls.edition.errors" [messages]="{ required: 'Edition is required', pattern: 'Enter a valid Edition' }"></app-control-error>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+            <label for="price">Price</label>
+            <input type="text" class="form-control" id="price" name="price" formControlName="price">
+            <app-control-error *ngIf="controls.price.touched && controls.price.errors"
+            [errors]="controls.price.errors" [messages]="{ required: 'Price is required', pattern: 'Enter a valid Price' }"></app-control-error>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6">
+        <div class="form-group">
+        <label for="submit" class="d-none d-sm-block">&nbsp;</label>
+            <button type="submit" class="btn btn-primary">{{(exisitingBook == undefined || exisitingBook == null) ? 'Submit' : 'Update'}}</button>
+            <button type="submit" class="btn btn-danger ml-4" *ngIf="(exisitingBook != undefined && exisitingBook != null)" disabled>Delete</button>
+        </div>
+      </div>    
+  </div>
+</form>
